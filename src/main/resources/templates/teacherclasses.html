@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/css/classes.css">
+    <title>Classes | Student Dashboard</title>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">TUTORMATE</div>
+            <div class="login-text">Teacher Login</div>
+            <nav class="nav">
+                <a th:href="@{/teacher/teacherDashboard}">Dashboard</a>
+                <a href="#" class="active">Classes</a>
+                <a th:href="@{/teacher/addclass}">Add Classes</a>
+                <a th:href="@{/teacher/teacherprofile}">My Profile</a>
+                <a th:href="@{/logout}">Logout</a>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>Teaching Classes</h1>
+            </header>
+            <!-- Content -->
+            <section class="content">
+                <!-- Classes Section -->
+                <div class="classes-grid">
+                    <!-- Dynamic Class Cards -->
+                    <div class="class-card" th:each="class : ${classes}">
+                        <div class="card-header">
+                            <h3 th:text="${class.name}">Class Title</h3>
+                        </div>
+                        <div class="card-body">
+                            <!-- <p><strong>Teacher:</strong> <span th:text="${class.teacher}">Teacher Name</span></p> -->
+                            <p><strong>Subject: </strong> <span th:text="${class.description}">Subject</span></p>
+                            <p><strong>Fee: </strong> <span th:text="${class.fee}">Fee</span> LKR</p>
+                            <p><strong>Duration: </strong> <span th:text="${class.duration}">Duration</span> mins</p>
+                            <!-- <p><strong>Payment Scheme:</strong> <span th:text="${class.paymentScheme}">Payment Scheme</span></p> -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update File Status</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<div class="container">
+    <h1>Update File Status</h1>
+
+    <form id="updateForm">
+        <label for="fileId">File ID:</label>
+        <input type="number" id="fileId" name="fileId" required>
+
+        <label for="status">Status:</label>
+        <input type="text" id="status" name="status" required>
+
+        <button type="button" onclick="updateStatus()">Update Status</button>
+    </form>
+
+    <div id="responseMessage"></div>
+</div>
+
+<script>
+    async function updateStatus() {
+        const fileId = document.getElementById("fileId").value;
+        const status = document.getElementById("status").value;
+
+        const response = await fetch(`/finance/updateStatus/${fileId}?status=${status}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' }
+        });
+
+        const message = await response.text();
+        const responseDiv = document.getElementById("responseMessage");
+
+        if (response.ok) {
+            responseDiv.innerHTML = `<p style="color: green;">${message}</p>`;
+        } else {
+            responseDiv.innerHTML = `<p style="color: red;">${message}</p>`;
+        }
+    }
+</script>
+</body>
+</html>

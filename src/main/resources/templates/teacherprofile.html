@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet" />
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" href="/css/Dashboard.css">
+    <style>
+        .profile-info {
+            justify-content: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-info p {
+            font-size: 32px;
+            font-weight: normal;
+        }
+
+        .profile-info strong {
+            color: rgb(0, 0, 0);
+        }
+
+        .edit-button {
+            background-color: #f39c12;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin-top: 20px;
+            width: 25%;
+            text-align: center;
+        }
+
+        .edit-button:hover {
+            background-color: #e67e22;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">TUTORMATE</div>
+            <div class="login-text">Teacher Login</div>
+            <nav class="nav">
+                <a th:href="@{/teacher/teacherDashboard}" >Dashboard</a>
+                <a th:href="@{/teacher/teacherclasses}">Classes</a>
+                <a th:href="@{/teacher/addclass}">Add Classes</a>
+                <a class="active">My Profile</a>
+                <a th:href="@{/logout}">Logout</a>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <h1>Teacher Profile</h1>
+            </header>
+
+            <section class="content">
+                <div class="profile-info" th:if="${user != null}">
+                    <p>Name: <span th:text="${user.name}"></span></p>
+                    <p>Email: <span th:text="${user.email}"></span></p>
+                    <p>Phone no: </p>
+                    <p>Address: </p>
+                    <button class="edit-button" th:onclick="#">Edit Profile</button>
+                </div>
+
+                <div class="profile-info" th:if="${error != null}">
+                    <p th:text="${error}"></p>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

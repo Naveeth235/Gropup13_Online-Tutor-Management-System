@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Proof Status</title>
+    <link rel="stylesheet" href="/css/styles2.css">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet" />
+</head>
+<body>
+<h1>Manage Payment Proof Status</h1>
+
+<div>
+    <p>Student Name: <span id="studentName"></span></p>
+    <p>Student ID: <span id="studentID"></span></p>
+    <p>Email: <span id="email"></span></p>
+    <p>Course ID: <span id="courseID"></span></p>
+</div>
+
+
+<div>
+    <label for="status">Update Status:</label>
+    <select id="status">
+        <option value="pending">Pending</option>
+        <option value="approved">Approved</option>
+        <option value="rejected">Rejected</option>
+    </select>
+    <button onclick="updateStatus()">Update Status</button>
+</div>
+
+<script src="/js/payment-status.js"></script>
+</body>
+</html>

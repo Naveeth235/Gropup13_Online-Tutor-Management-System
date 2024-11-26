@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Success</title>
+</head>
+<body>
+    <h1>Delete Successful!</h1>
+
+    <div th:if="${successMessage}">
+        <p th:text="${successMessage}"></p>
+    </div>
+
+    <div th:if="${errorMessage}">
+        <p th:text="${errorMessage}"></p>
+    </div>
+
+    <a href="/admin/userList">Go back to User List</a>
+</body>
+</html>

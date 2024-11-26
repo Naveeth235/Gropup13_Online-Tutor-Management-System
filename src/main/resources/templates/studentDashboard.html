@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet" />
+    <title>Student Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="/css/Dashboard.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">TUTORMATE</div>
+            <div class="login-text">Student Login </div>
+            <nav class="nav">
+                <a class="active" >Dashboard</a>
+                <a th:href="@{/student/studentclasses}">Classes</a>
+                <a th:href="@{/student/studentbankInfo}">Payment Info</a>
+                <a th:href="@{/student/studentprofile}" >My Profile</a>
+                <a th:href="@{/logout}">Logout</a>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>Welcome to Tutormate</h1>
+            </header>
+            <!-- Content -->
+            <section class="content">
+                <div class="tab">
+                    <button class="tab-link active">Enrolled classes</button>
+                </div>
+                <div class="empty-state">
+                    <p>Not enrolled to any classes at the moment</p>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

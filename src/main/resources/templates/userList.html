@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet" />
+    <title>User List</title>
+    <link rel="stylesheet" type="text/css" href="/css/Dashboard.css">
+</head>
+<style>
+    .table-container {
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+
+    .user-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        border: 1px solid #ddd;
+    }
+
+    .user-table th, .user-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .user-table th {
+        background-color: #f4f4f4;
+    }
+
+    .btn-danger {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .btn-danger:hover {
+        background-color: #e53935;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">TUTORMATE</div>
+            <div class="login-text">Admin Login</div>
+            <nav class="nav">
+                <a th:href="@{/admin/adminDashboard}">Dashboard</a>
+                <a th:href="@{/admin/adminprofile}">My Profile</a>
+                <a class="active">View Users List</a>
+                <a th:href="@{/admin/adminclasses}">Classes</a>
+                <a th:href="@{/logout}">Logout</a>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <h1>List of users in the system</h1>
+            </header>
+            <!-- Content -->
+            <section class="content">
+                <div class="tab">
+                    <button class="tab-link active">User Management</button>
+                </div>
+                <!-- User List Table -->
+                <div class="table-container">
+                    <table class="user-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="user : ${users}">
+                                <td th:text="${user.id}"></td>
+                                <td th:text="${user.firstName}"></td>
+                                <td th:text="${user.lastName}"></td>
+                                <td th:text="${user.email}"></td>
+                                <td th:text="${user.role.name()}"></td>
+                                <td>
+                                    <form th:action="@{/admin/delete}" method="post">
+                                        <input type="hidden" name="email" th:value="${user.email}" />
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pending Enrollment Requests</title>
+</head>
+<body>
+    <h1>Pending Enrollment Requests</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Student Name</th>
+                <th>Class Name</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="pendingRequests : ${pendingpage}">
+                <td th:text="${pendingRequests.id}"></td>
+                <td th:text="${pendingRequests.student != null ? pending_enrollment.student.name : 'No Name'}"></td>
+                <td th:text="${pendingRequests.classes != null ? pending_enrollment.classes.name : 'No Class'}"></td>
+                <td th:text="${pendingRequests.status}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

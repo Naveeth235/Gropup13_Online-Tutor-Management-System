@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Teacher List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center">Teacher List</h1>
+
+    <!-- Teacher Table -->
+    <h2>Teachers</h2>
+    <table class="table table-bordered table-striped mt-4">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher : ${teachers}">
+            <td th:text="${teacher.id}"></td>
+            <td th:text="${teacher.name}"></td>
+            <td th:text="${teacher.subject}"></td>
+            <td>
+                <form th:action="@{/transferTeacher/{id}(id=${teacher.id})}" method="POST">
+                    <button class="btn btn-primary">Transfer</button>
+                </form>
+                <form th:action="@{/deleteTeacher/{id}(id=${teacher.id})}" method="POST" style="display:inline;">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- TQ Table -->
+    <h2>Transferred Teachers (TQ)</h2>
+    <table class="table table-bordered table-striped mt-4">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Subject</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tq : ${tqList}">
+            <td th:text="${tq.id}"></td>
+            <td th:text="${tq.name}"></td>
+            <td th:text="${tq.subject}"></td>
+            <td>
+                <!-- Undo Transfer Button -->
+                <form th:action="@{/undoTransfer/{id}(id=${tq.id})}" method="POST">
+                    <button class="btn btn-warning">Undo</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

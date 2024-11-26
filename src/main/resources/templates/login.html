@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet" />
+    <title>Tutormate Login page</title>
+    <link rel="stylesheet" type = "text/css" href="/css/login.css">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h1>Login to your account</h1>
+
+            <!-- Error Message Display (Moved to the top) -->
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">
+                    Invalid Email and Password.
+                </div>
+            </div>
+            
+            <!-- Logout Success Message -->
+            <div th:if="${param.logout}">
+                <div class="alert alert-success">
+                    You have been logged out.
+                </div>
+            </div>
+
+            <!-- Login Form -->
+            <form method="post" th:action="@{/login}">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="username" placeholder="example@gmail.com" required />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required />
+                </div>
+                <button type="submit" class="btn">Log in</button>
+                <p class="signin">Don't have an account? <a th:href="@{/register}">Create an account</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
