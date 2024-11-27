@@ -62,4 +62,16 @@ public class AdminController {
     public String deleteSuccessPage() {
         return "deleteSuccess";
     }
+
+    @PostMapping("/deleteClass")
+    public String deleteClass(@RequestParam("classId") Long classId, Model model) {
+        try {
+            classService.deleteClassById(classId); // Service layer handles deletion
+        } catch (RuntimeException e) {
+            // If an error occurs, redirect back with an error message
+            model.addAttribute("error", e.getMessage());
+            return "redirect:/admin/adminclasses?error=" + e.getMessage();
+        }
+        return "redirect:/admin/adminclasses?success=Class deleted successfully";
+    }
 }
