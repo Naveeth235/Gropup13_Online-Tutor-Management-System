@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap" rel="stylesheet" />
+    <title>User Profile</title>
+    <link rel="stylesheet" type="text/css" href="/css/Dashboard.css">
+    <style>
+        .profile-info {
+            justify-content: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-info p {
+            font-size: 32px;
+            font-weight: normal;
+        }
+
+        .profile-info strong {
+            color: rgb(0, 0, 0);
+        }
+
+        .edit-button {
+            background-color: #f39c12;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin-top: 20px;
+            width: 25%;
+            text-align: center;
+        }
+
+        .edit-button:hover {
+            background-color: #e67e22;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Label styling for better visibility */
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* Custom input styling */
+        .custom-input {
+            width: 100%;
+            padding: 12px 16px;
+            font-size: 1rem;
+            color: #333;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Placeholder text styling */
+        .custom-input::placeholder {
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Focused input styling */
+        .custom-input:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        /* Hover effect for input */
+        .custom-input:hover {
+            border-color: #aaa;
+        }
+
+        /* Add responsiveness */
+        @media (max-width: 768px) {
+            .custom-input {
+                font-size: 0.9rem;
+                padding: 10px 14px;
+            }
+        }
+        .edit-button {
+            background-color: #f39c12;
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin-top: 20px;
+            width: 25%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo">TUTORMATE</div>
+        <div class="login-text">Student Login</div>
+        <nav class="nav">
+            <a th:href="@{/student/studentDashboard}" >Dashboard</a>
+            <a th:href="@{/student/studentclasses}">Classes</a>
+            <a th:href="@{/student/studentbankInfo}">Payment Info</a>
+            <a class="active">My Profile</a>
+            <a th:href="@{/logout}">Logout</a>
+        </nav>
+    </aside>
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="header">
+            <h1>Student Profile</h1>
+        </header>
+
+        <section class="content">
+            <form th:action="@{/student/studentprofile/edit}" th:object="${user}" method="post">
+                <div>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" class="custom-input" name="name" th:value="*{name}" required />
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" class="custom-input" name="email" th:value="*{email}" readonly />
+                </div>
+                <div>
+                    <label for="phone">Phone:</label>
+                    <input type="text" id="phone" class="custom-input" name="phone" th:value="*{phone}" required />
+                </div>
+                <div>
+                    <label for="bio">Bio:</label>
+                    <input type="text" id="bio" class="custom-input" name="bio" th:value="*{bio}" required />
+                </div>
+                <button type="submit" class="edit-button">Save Changes</button>
+            </form>
+        </section>
+    </main>
+</div>
+</body>
+</html>

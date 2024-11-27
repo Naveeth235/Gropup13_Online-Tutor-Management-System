@@ -47,6 +47,17 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    public User updateUser(Long id, User updatedUser) {
+        return userRepository.findById(id).map(user -> {
+            user.setName(updatedUser.getName());
+            user.setEmail(updatedUser.getEmail());
+            user.setPassword(updatedUser.getPassword()); // Hash before saving
+            user.setPhone(updatedUser.getPhone());
+            user.setBio(updatedUser.getBio());
+            return userRepository.save(user);
+        }).orElseThrow(() -> new RuntimeException("User not found with ID: " + id));
+    }
+
     private UserDto convertEntityToDto(User user) {
         UserDto userDto = new UserDto();
         String[] name = user.getName().split(" ");
